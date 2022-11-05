@@ -10,7 +10,7 @@ import MovieDetail from "./components/MovieDetail.vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 
-import './assets/main.css'
+
 
 const routes = [
   { path: "/", component: Home },
@@ -19,7 +19,7 @@ const routes = [
     component: Movies,
     children: [
       { path: "", component: MoviesList },
-      { path: ":id/:name", component: MovieDetail },
+      { path: ":id/", component: MovieDetail },
       
     ],
   },
