@@ -1,9 +1,11 @@
 <template>
-  <div id="app" class="container">
-    <nav class="navbar navbar-expand-lg bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Rent a Movie</a>
-        <button
+
+  <div id="app" >
+  <div class="container">
+    <nav   class="navbar navbar-expand-lg ">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Rent a Movie</a>
+    <button
           class="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -11,22 +13,41 @@
           aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <router-link class="nav-link" to="/">Home</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" to="/movies">Movies</router-link>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <router-view></router-view>
+        > 
+         <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          
+          <router-link class="nav-link" to="/">Home</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/movies">Movies</router-link>
+        </li>
+       
+       
+      </ul>
+    </div>
   </div>
+
+</nav>
+</div>
+<body>
+   
+ 
+      
+  
+    <router-view id="router"></router-view>
+  </body>
+  </div>
+
 </template>
+<style>
+        
+
+        #app{
+          background-color: #4e4e4e;
+          color:#c0c0c0;
+        }
+</style>
