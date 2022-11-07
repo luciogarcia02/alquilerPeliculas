@@ -28,7 +28,7 @@
 
     },
     },
-    async created() {
+    async mounted() {
       var peliculas = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies')
       this.movies = await peliculas.json()
       
