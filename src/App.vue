@@ -34,10 +34,6 @@
 </nav>
 </div>
 
-   
- 
-      
-  
     <router-view id="router"></router-view>
 
   </div>
@@ -51,3 +47,15 @@
           color:#c0c0c0;
         }
 </style>
+
+<script>
+import { useNt2Store } from "./store";
+export default {
+  setup() {
+    //vamos a dejar disponible el state
+    const store = useNt2Store();
+    return { store };
+  },
+  
+};
+</script>
