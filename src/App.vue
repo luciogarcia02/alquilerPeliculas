@@ -33,13 +33,13 @@
 
 </nav>
 </div>
-<body>
+
    
  
       
   
     <router-view id="router"></router-view>
-  </body>
+
   </div>
 
 </template>
