@@ -5,6 +5,7 @@ export const useNt2Store = defineStore("nt2", {
   getters: {
     total: (state) => state.contador + 10,
     name: (state) => state.appName,
+    user: (state) => state.user
   },
   actions: {
     incrementar() {
