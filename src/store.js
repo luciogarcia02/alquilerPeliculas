@@ -17,10 +17,10 @@ export const useNt2Store = defineStore("nt2", {
     
     
 
-    async devolverUser(id){
+    async devolverUser(name,pass){
       const resultUsers = await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/users");
       let lista = await resultUsers.json();
-      this.user=lista.find((a)=>a.id==id);
+      this.user=lista.find((a)=>a.name==name&&a.password==pass);
       this.user.peliculas=[]
       return this.user
     },

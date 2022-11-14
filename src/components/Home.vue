@@ -29,7 +29,8 @@
          </button>
         </div>
         <h1>{{user}} adasda</h1>
-        <input v-model="input" id="login">
+        <input v-model="username" id="login">
+        <input v-model="password" id="login">
         <button @click="login()">pinchame</button>
        
     </div>
@@ -52,12 +53,12 @@ export default {
   },
   
   
-  data(){return {user:{},input:""}}
+  data(){return {user:{},username:"",password:""}}
   ,
   methods: {
 
     async login(){
-    let a=await this.store.devolverUser(this.input)
+    let a=await this.store.devolverUser(this.username,this.password)
     this.user=a.name
     console.log(a.name)
   }
