@@ -33,9 +33,13 @@
 
 </nav>
 </div>
+<body>
+   
+ 
+      
   
     <router-view id="router"></router-view>
-
+  </body>
   </div>
 
 </template>
@@ -57,8 +61,6 @@ export default {
     const store = useNt2Store();
     return { store };
   },
-  async created() {
-    await this.store.init();
-  },
+  
 };
 </script>

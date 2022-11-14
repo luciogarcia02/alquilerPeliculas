@@ -21,15 +21,17 @@
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <input id="login">
+        
 
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
            <span class="visually-hidden">Next</span>
          </button>
         </div>
-        <input v-model="input" id="login">
-        <button @click="login()"></button>
+        <h1>{{user}} adasda</h1>
+        <input v-model="username" id="login">
+        <input v-model="password" id="login">
+        <button @click="login()">pinchame</button>
        
     </div>
 </template>
@@ -49,17 +51,16 @@ export default {
     const store = useNt2Store();
     return { store };
   },
-  retornodato(){
-    return document.getElementById("login").innerHTML
-  }
-  ,
-  data:{input:""}
+  
+  
+  data(){return {user:{},username:"",password:""}}
   ,
   methods: {
 
     async login(){
-       let a=await this.store.devolverUser(this.input)
-    console.log() 
+    let a=await this.store.devolverUser(this.username,this.password)
+    this.user=a.name
+    console.log(a.name)
   }
 
     }
