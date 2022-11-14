@@ -2,7 +2,7 @@
 
   <div id="app" >
   <div class="container">
-    <nav   class="navbar navbar-expand-lg ">
+    <nav   class=" rounded navbar navbar-expand-lg ">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Rent a Movie</a>
     <button
@@ -33,19 +33,16 @@
 
 </nav>
 </div>
-<body>
-   
- 
-      
   
     <router-view id="router"></router-view>
-  </body>
+
   </div>
 
 </template>
 <style>
-        
-
+        .navbar{
+          background-color: #757575;
+        }
         #app{
           background-color: #4e4e4e;
           color:#c0c0c0;
