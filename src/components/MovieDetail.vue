@@ -22,11 +22,14 @@ export default {
     return { id:this.$route.params.id}
   }
   ,
-  methods: {
-    
+  methods:{
     async alquilar(){
     let a=await this.store.alquilarPelicula(this.id)
-    console.log(a) 
+    if(a==null){
+      alert("ya fue alquilada no se puede volver a Alquilar")
+    }
+    else{console.log(this.id) }
+     
   }
 
     }
