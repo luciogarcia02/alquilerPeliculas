@@ -28,7 +28,7 @@
            <span class="visually-hidden">Next</span>
          </button>
         </div>
-        <h1>{{user}} adasda</h1>
+        <h1>user: {{user}} </h1>
         <input v-model="username" id="login">
         <input v-model="password" id="login">
         <button @click="login()">pinchame</button>
@@ -53,7 +53,7 @@ export default {
   },
   
   
-  data(){return {user:{},username:"",password:""}}
+  data(){return {user:this.store.user.name,username:"",password:""}}
   ,
   methods: {
 
