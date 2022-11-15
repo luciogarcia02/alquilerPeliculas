@@ -2,7 +2,7 @@
   <div class="container">
     <div class="list-group d-grid gap-3">
       <div
-        v-for="(movie, index) in movies"
+        v-for="(movie, index) in moviess"
         :key="movie.id"
         @click="goTo(movie.id)"
         class="rounded p-2 bg-dark "
@@ -28,7 +28,7 @@ export default {
   
   data() {
     return {
-      movies: this.store.user.movies
+      moviess: this.store.user.peliculas
     };
   },
   methods: {
@@ -40,7 +40,7 @@ export default {
   },
   async mounted() {
     var peliculas = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies')
-    this.movies = await peliculas.json()
+    console.log(this.moviess.lenght)
     
     
 

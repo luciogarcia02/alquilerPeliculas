@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 
 export const useNt2Store = defineStore("nt2", {
-  state: () => ({ user:{createdAt:"",id:"",name:"",password:"",peliculas:[]},contador: 3, appName:""}),
+  state: () => ({ user:{id:"",name:"",password:"",peliculas:[]},contador: 3, appName:""}),
   getters: {
     total: (state) => state.contador + 10,
     name: (state) => state.appName,
@@ -20,13 +20,15 @@ export const useNt2Store = defineStore("nt2", {
     async devolverUser(name,pass){
       const resultUsers = await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/users");
       let lista = await resultUsers.json();
-      this.user=lista.find((a)=>a.name==name&&a.password==pass);
-      this.user.peliculas=[]
+      let filtro=lista.find((a)=>a.name==name&&a.password==pass);
+      this.user.id=filtro.id
+      this.user.name=filtro.name
+      this.user.password=filtro.password
       return this.user
     },
     async alquilarPelicula(id){
-      const resultPelicula = await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/movies/"+id);
-      const peli=resultPelicula.json()
+      let resultPelicula = await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/movies/"+id.toString());
+      let peli=resultPelicula.json()
       this.user.peliculas.push(peli)
       return peli
     }
