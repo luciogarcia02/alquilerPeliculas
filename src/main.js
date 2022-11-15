@@ -6,6 +6,9 @@ import Movies from "./components/Movies.vue";
 import MoviesList from "./components/MoviesList.vue";
 import MovieDetail from "./components/MovieDetail.vue";
 
+import { PiniaVuePlugin, createPinia } from "pinia";
+Vue.use(PiniaVuePlugin);
+const pinia = createPinia();
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
@@ -38,6 +41,7 @@ const router = new VueRouter({
 Vue.use(VueRouter); //injecta algunos utiles.
 
 new Vue({
-  router, //paso 4
+  router,
+  pinia, //paso 4
   render: (h) => h(App),
 }).$mount("#app");

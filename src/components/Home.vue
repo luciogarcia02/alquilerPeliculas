@@ -21,11 +21,18 @@
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
+        
+
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
            <span class="visually-hidden">Next</span>
          </button>
         </div>
+        <h1>{{user}} adasda</h1>
+        <input v-model="username" id="login">
+        <input v-model="password" id="login">
+        <button @click="login()">pinchame</button>
+       
     </div>
 </template>
 <style>
@@ -33,3 +40,30 @@
     background-color: black;
   }
 </style>
+<script>
+
+
+import { useNt2Store } from "../store";
+
+export default {
+  setup() {
+    //vamos a dejar disponible el state
+    const store = useNt2Store();
+    return { store };
+  },
+  
+  
+  data(){return {user:{},username:"",password:""}}
+  ,
+  methods: {
+
+    async login(){
+    let a=await this.store.devolverUser(this.username,this.password)
+    this.user=a.name
+    console.log(a.name)
+  }
+
+    }
+  
+};
+</script>
