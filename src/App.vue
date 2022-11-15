@@ -25,7 +25,9 @@
         <li class="nav-item">
           <router-link class="nav-link" to="/movies">Movies</router-link>
         </li>
-       
+        <li class="nav-item">
+          <router-link class="nav-link" to="/User">User</router-link>
+        </li>
        
       </ul>
     </div>

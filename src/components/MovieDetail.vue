@@ -22,11 +22,10 @@ export default {
     return { id:this.$route.params.id}
   }
   ,
-  methods: {
-    
+  methods:{
     async alquilar(){
     let a=await this.store.alquilarPelicula(this.id)
-    console.log(a) 
+    console.log(this.id) 
   }
 
     }
