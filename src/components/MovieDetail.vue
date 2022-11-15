@@ -25,7 +25,11 @@ export default {
   methods:{
     async alquilar(){
     let a=await this.store.alquilarPelicula(this.id)
-    console.log(this.id) 
+    if(a==null){
+      alert("ya fue alquilada no se puede volver a Alquilar")
+    }
+    else{console.log(this.id) }
+     
   }
 
     }
