@@ -39,7 +39,6 @@ export default {
   },
   methods: {
     goTo(id) {
-      console.log("lo llamo")
       this.$router.push(`/movies/${id}`);
   }
   },
