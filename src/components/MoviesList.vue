@@ -1,19 +1,29 @@
 <template>
     <div class="container">
-      <div class="list-group d-grid gap-3">
-        <div
-          v-for="(movie, index) in movies"
-          :key="movie.id"
-          @click="goTo(movie.id)"
-          class="rounded p-2 bg-dark "
-          style="cursor: pointer"
-          >{{ movie.name }}</div
-        >
       
+    <div class="card-deck">
+     <div class="row">
+         <div class="col-sm-4" v-for="movie in movies" :key="movie.id">
+             <div class="card bg-dark mb-3">
+                 <div>
+                     <div class="card-body" style="margin: 0 auto;width: 90%; max-width: 1200px;">
+                    <img class="rounded card-img-top" :src = "movie.url" alt="Card image cap">
+                      <div class="card-body">
+                      <h5 class="card-title">{{ movie.name }}</h5>
+                      <p class="card-text">desc?</p>
+                      <a class="btn btn-secondary" @click="goTo(movie.id)">Alquilar</a>
+                      </div>
+                     </div>
+                  </div>
+             </div>
+         </div>
+     </div>
+  </div>
     </div>
-    </div>
+    
   </template>
-  
+
+
   <script>
   export default {
     data() {
