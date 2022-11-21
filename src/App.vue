@@ -27,6 +27,7 @@
         </li>
         <li class="nav-item">
           <router-link class="nav-link" to="/ranking">Ranking</router-link>
+          <router-link class="nav-link" to="/User">User</router-link>
         </li>
        
       </ul>
