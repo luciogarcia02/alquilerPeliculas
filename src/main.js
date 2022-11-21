@@ -5,6 +5,7 @@ import Home from "./components/Home.vue";
 import Movies from "./components/Movies.vue";
 import MoviesList from "./components/MoviesList.vue";
 import MovieDetail from "./components/MovieDetail.vue";
+import MoviesRanking from "./components/MoviesRanking.vue";
 
 import { PiniaVuePlugin, createPinia } from "pinia";
 Vue.use(PiniaVuePlugin);
@@ -12,6 +13,7 @@ const pinia = createPinia();
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
+import "dropdown";
 
 
 
@@ -23,8 +25,10 @@ const routes = [
     children: [
       { path: "", component: MoviesList },
       { path: ":id/", component: MovieDetail },
-      
     ],
+  },
+  {
+    path: "/ranking", component: MoviesRanking
   },
   {
     path: "*",
@@ -39,6 +43,7 @@ const router = new VueRouter({
 
 //paso 3
 Vue.use(VueRouter); //injecta algunos utiles.
+
 
 new Vue({
   router,

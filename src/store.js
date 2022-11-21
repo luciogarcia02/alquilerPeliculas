@@ -5,6 +5,7 @@ export const useNt2Store = defineStore("nt2", {
   getters: {
     total: (state) => state.contador + 10,
     name: (state) => state.appName,
+    user: (state) => state.user
   },
   actions: {
     incrementar() {
@@ -12,10 +13,6 @@ export const useNt2Store = defineStore("nt2", {
       console.log("incrementar");
       this.contador++;
     },
-
-   
-    
-    
 
     async devolverUser(name,pass){
       const resultUsers = await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/users");
@@ -29,7 +26,8 @@ export const useNt2Store = defineStore("nt2", {
       const peli=resultPelicula.json()
       this.user.peliculas.push(peli)
       return peli
-    }
+    },
+
     //para mostrar haremos una computada para que cuando se actualize la info se cargue en tiempo real 
   },
 });
