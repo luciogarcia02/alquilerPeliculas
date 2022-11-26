@@ -1,9 +1,38 @@
 <template>
     <div>
-        <p>Seleccionaste la pelicula {{ id }} </p>
-        <router-link to="/movies"><button type="button" class="btn btn-dark">Volver</button></router-link>
-      <button type="button" class="btn btn-secondary" @click="alquilar()">Alquilar</button>
+      <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <router-link to="/movies"><button type="button" class="btn btn-dark">Volver</button></router-link>
+
+        </div>
+      </div>
+   
+
+   
+  
+  <div class="row">
+    <div class="col-sm-5">
+<img class="movieImage" :src="detalles.url">
+
+</div>
+    <div v-if="detalles" class="col-sm-7">
+      <h2>{{  this.detalles.name }} ( {{this.detalles.year}})</h2>
+
+  <h6> GÉNERO: {{this.detalles.genre}}</h6>
+  <h6> DURACIÓN: {{this.detalles.duration}}</h6>
+  <h6> CLASIFICACIÓN: {{this.detalles.classification}}</h6>
+  <h6> DIRECTOR: {{this.detalles.director}}</h6>
+  <h6> CALIFICACION: {{this.detalles.score}}</h6>
+      <h5>SINOPSIS</h5>
+ <p>{{this.detalles.description}}</p>
+ <button type="button" class="btn btn-secondary" @click="alquilar()">Alquilar</button>
     </div>
+  </div>
+
+</div>
+    </div>
+    
   </template>
 
 <script>
@@ -13,23 +42,55 @@ import { useNt2Store } from "../store";
 
 export default {
   setup() {
+  
     //vamos a dejar disponible el state
     const store = useNt2Store();
     return { store };
   }
   ,
   data(){
-    return { id:this.$route.params.id}
+    return {
+     
+      id:this.$route.params.id,
+      detalles: Object
+  
+    }
   }
   ,
+  
   methods: {
     
     async alquilar(){
     let a=await this.store.alquilarPelicula(this.id)
     console.log(a) 
-  }
-
+  },
+  getImage () {
+   
+      var a = this.detalles.url;
+      let img = document.createElement("img");
+      img.src = a;
+      return img;
     }
+    },
+    async mounted() {
+    
+
+      var detallesPelicula = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies/'+this.id)
+
+this.detalles = await detallesPelicula.json();
+
+
+
+      
+    },
   
 };
+
 </script>
+<style scoped>
+.movieImage{
+  width: 350px;
+  height: 500px;
+}
+
+</style>
