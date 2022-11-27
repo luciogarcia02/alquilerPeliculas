@@ -8,7 +8,7 @@ import MovieDetail from "./components/MovieDetail.vue";
 import MoviesRanking from "./components/MoviesRanking.vue";
 import User from "./components/User.vue";
 import UserMovies from "./components/UserMovies.vue";
-
+import Login from "./components/Login.vue";
 
 import { PiniaVuePlugin, createPinia } from "pinia";
 Vue.use(PiniaVuePlugin);
@@ -22,6 +22,12 @@ import "dropdown";
 
 const routes = [
   { path: "/", component: Home },
+  {
+    path: "/login",
+    component: Login
+   
+  },
+
   {
     path: "/movies",
     component: Movies,

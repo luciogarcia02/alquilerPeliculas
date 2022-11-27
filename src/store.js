@@ -21,6 +21,7 @@ export const useNt2Store = defineStore("nt2", {
     
 
     async devolverUser(name,pass){
+
       const resultUsers = await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/users");
       let lista = await resultUsers.json();
       let filtro=lista.find((a)=>a.name==name&&a.password==pass);

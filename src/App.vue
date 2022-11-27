@@ -23,12 +23,14 @@
           <router-link class="nav-link" to="/">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/movies">Movies</router-link>
+          <router-link class="nav-link" to="/movies">Peliculas</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/User">User</router-link>
+          <router-link class="nav-link" to="/User">Peliculas alquiladas</router-link>
         </li>
        <li> <router-link class="nav-link" to="/ranking">Ranking</router-link></li>
+
+       <li> <router-link  class="nav-link" to="/login" style="float:right">Iniciar sesión</router-link></li>
       </ul>
     </div>
   </div>
@@ -44,9 +46,11 @@
 <style>
         
         #app{
-          background-color: #4e4e4e;
+          background-color: black;
           color:#c0c0c0;
         }
+    
+
 </style>
 
 <script>

@@ -28,10 +28,7 @@
          <span class="visually-hidden">Next</span>
        </button>
       </div>
-      <h1>user: {{user}} </h1>
-      <input v-model="username" id="login">
-      <input v-model="password" id="login">
-      <button @click="login()">pinchame</button>
+   
      
   </div>
 </template>

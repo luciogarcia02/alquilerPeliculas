@@ -10,7 +10,7 @@
                     <img class="rounded card-img-top" :src = "movie.url" alt="Card image cap">
                       <div class="card-body">
                       <h5 class="card-title">{{ movie.name }}</h5>
-                      <p class="card-text">desc?</p>
+                  
                       <a class="btn btn-secondary" @click="goTo(movie.id)">Alquilar</a>
                       </div>
                      </div>
