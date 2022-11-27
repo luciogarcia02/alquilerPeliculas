@@ -19,11 +19,11 @@
     <div v-if="detalles" class="col-sm-7">
       <h2>{{  this.detalles.name }} ( {{this.detalles.year}})</h2>
 
-  <h6> GÉNERO: {{this.detalles.genre}}</h6>
+  <h6> GÉNERO: {{ this.genreName  }} </h6>
   <h6> DURACIÓN: {{this.detalles.duration}}</h6>
   <h6> CLASIFICACIÓN: {{this.detalles.classification}}</h6>
   <h6> DIRECTOR: {{this.detalles.director}}</h6>
-  <h6> CALIFICACION: {{this.detalles.score}}</h6>
+  <h6> CALIFICACION DE LOS USUARIOS: {{this.detalles.score}}</h6>
       <h5>SINOPSIS</h5>
  <p>{{this.detalles.description}}</p>
  <button type="button" class="btn btn-secondary" @click="alquilar()">Alquilar</button>
@@ -52,14 +52,26 @@ export default {
     return {
      
       id:this.$route.params.id,
-      detalles: Object
-  
+      detalles: Object,
+      genreName: ''
     }
   }
   ,
   
   methods: {
     
+    async getGenreName(id){
+
+     const result = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/genres/'+id);
+    const data = await result.json();
+   return data.name
+
+
+
+return id
+    },
+
+
     async alquilar(){
     let a=await this.store.alquilarPelicula(this.id)
     console.log(a) 
@@ -78,6 +90,8 @@ export default {
       var detallesPelicula = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies/'+this.id)
 
 this.detalles = await detallesPelicula.json();
+this.genreName = await this.getGenreName(this.detalles.genre)
+
 
 
 
