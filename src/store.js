@@ -25,10 +25,12 @@ export const useNt2Store = defineStore("nt2", {
       const resultUsers = await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/users");
       let lista = await resultUsers.json();
       let filtro=lista.find((a)=>a.name==name&&a.password==pass);
+      if(filtro!=null){ 
       this.user.id=filtro.id
       this.user.name=filtro.name
       this.user.password=filtro.password
       this.logueado=true
+      }
       return this.user
     },
     async alquilarPelicula(id){
