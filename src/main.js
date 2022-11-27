@@ -8,8 +8,8 @@ import MovieDetail from "./components/MovieDetail.vue";
 import MoviesRanking from "./components/MoviesRanking.vue";
 import User from "./components/User.vue";
 import UserMovies from "./components/UserMovies.vue";
-import MovieRent from "./components/Rent.vue";
-import MovieRankingGenre from "./components/MoviesRanking.vue"
+
+
 import { PiniaVuePlugin, createPinia } from "pinia";
 Vue.use(PiniaVuePlugin);
 const pinia = createPinia();
@@ -27,7 +27,7 @@ const routes = [
     component: Movies,
     children: [
       { path: "", component: MoviesList },
-      { path: ":id/", component: MovieRent },
+      { path: ":id/", component: MovieDetail },
     ],
   },
   ,

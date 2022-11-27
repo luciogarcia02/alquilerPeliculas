@@ -44,13 +44,17 @@ export default {
     goTo(id) {
       console.log("lo llamo")
       this.$router.push(`/movies/${id}`);
-  },
+  }, 
+  validar(){
+    if(!this.store.sesion){ 
+      this.$router.push(`/#`);
+    }
+  }
   },
   async mounted() {
     var peliculas = await this.store.user.peliculas
-    
-    console.log(this.movies)
-    
+    //this.validar()
+    console.log(this.store.sesion)
    // this.movies = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies')
    // .then(response => response.json())
    // .then(response => response.data)
