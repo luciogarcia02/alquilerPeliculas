@@ -54,7 +54,7 @@ data(){
 methods:{
   validar(){
     if(this.store.user.id===-1){ 
-      alert("inicia sesion antes de proseguir perra")
+      alert("inicia sesion")
       this.$router.push(`/#`);
     }
   }
@@ -87,18 +87,22 @@ methods:{
   methods: {
    validar(){
     if(this.store.user.id===-1){ 
-      alert("inicia sesion antes de proseguir")
-      this.$router.push(`/#`);
+      alert("inicia sesion ")
+      this.$router.push(`/login`);
     }
   }
   ,
   async alquilar(){
   let a=await this.store.alquilarPelicula(this.id)
+
   if(a==null){
     alert("ya fue alquilada no se puede volver a Alquilar")
   }
-  else{console.log(this.id) }
-   
+  
+  else{
+    alert("Se alquiló la pelicula correctamente " + this.detalles.name)
+    console.log(this.id) }
+    this.$router.push(`/user`);
 }
 ,
     async getGenreName(id){

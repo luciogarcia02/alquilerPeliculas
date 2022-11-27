@@ -10,8 +10,8 @@
                   <img class="rounded card-img-top" :src = "movie.url" alt="Card image cap">
                     <div class="card-body">
                     <h5 class="card-title">{{ movie.name }}</h5>
-                    <p class="card-text">desc?</p>
-                    <a class="btn btn-secondary" @click="goTo(movie.id)">Alquilar</a>
+                    
+                    <a class="btn btn-secondary" @click="goTo(movie.id)">CALIFICAR</a>
                     </div>
                    </div>
                 </div>
@@ -42,12 +42,12 @@ export default {
   },
   methods: {
     goTo(id) {
-      console.log("lo llamo")
-      this.$router.push(`/movies/${id}`);
+   
+      this.$router.push(`/movieReview/${id}`);
   }, 
   validar(){
     if(this.store.user.id===-1){ 
-      alert("inicia sesion antes de proseguir perra")
+      alert("inicia sesion")
       this.$router.push(`/#`);
     }
   }
