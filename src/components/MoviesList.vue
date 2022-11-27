@@ -24,8 +24,17 @@
   </template>
 
 
-  <script>
-  export default {
+<script>
+
+
+import { useNt2Store } from "../store";
+
+export default {
+setup() {
+  //vamos a dejar disponible el state
+  const store = useNt2Store();
+  return { store };
+},
     data() {
       return {
         movies: [],
