@@ -23,7 +23,7 @@
   <h6> DURACIÓN: {{this.detalles.duration}}</h6>
   <h6> CLASIFICACIÓN: {{this.detalles.classification}}</h6>
   <h6> DIRECTOR: {{this.detalles.director}}</h6>
-  <h6> CALIFICACION DE LOS USUARIOS: {{this.detalles.score}}</h6>
+  <h6> CALIFICACION DE LOS: {{this.detalles.score}}</h6>
       <h5>SINOPSIS</h5>
  <p>{{this.detalles.description}}</p>
  <button type="button" class="btn btn-secondary" @click="alquilar()">Alquilar</button>
