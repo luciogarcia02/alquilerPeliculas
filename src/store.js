@@ -1,21 +1,24 @@
 import { defineStore } from "pinia";
 
 export const useNt2Store = defineStore("nt2", {
-  state: () => ({ user:{id:"",name:"",password:"",movies:[]},contador: 3, appName:""}),
+  state: () => ({ user:{id:-1,name:"",password:"",movies:[]},contador: 3, appName:""}),
   getters: {
     total: (state) => state.contador + 10,
     name: (state) => state.appName,
-    user: (state) => state.user
-  },
-  actions: {
     movies(){
       return this.user.movies
-    },
+    }
+  },
+  actions: {
     incrementar() {
       //hacer mas cosas
       console.log("incrementar");
       this.contador++;
     },
+
+   
+    
+    
 
     async devolverUser(name,pass){
       const resultUsers = await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/users");

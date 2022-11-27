@@ -1,5 +1,5 @@
 <template>
-    <div class= "container"><h1><p>Movies</p></h1>
+    <div class= "container"><h1><p>UserMovies</p></h1>
 
     <router-view></router-view>
     </div>
