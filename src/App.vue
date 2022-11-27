@@ -2,7 +2,7 @@
 
   <div id="app" >
   <div class="container">
-    <nav   class=" rounded navbar navbar-expand-lg ">
+    <nav   class="navbar navbar-expand-lg ">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Rent a Movie</a>
     <button
@@ -26,10 +26,9 @@
           <router-link class="nav-link" to="/movies">Movies</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/ranking">Ranking</router-link>
           <router-link class="nav-link" to="/User">User</router-link>
         </li>
-       
+       <li> <router-link class="nav-link" to="/ranking">Ranking</router-link></li>
       </ul>
     </div>
   </div>
@@ -37,21 +36,13 @@
 </nav>
 </div>
 
-<body>
-
-
- 
-      
-  
     <router-view id="router"></router-view>
-  </body>
+
   </div>
 
 </template>
 <style>
-        .navbar{
-          background-color: #757575;
-        }
+        
         #app{
           background-color: #4e4e4e;
           color:#c0c0c0;
@@ -69,3 +60,4 @@ export default {
   
 };
 </script>
+

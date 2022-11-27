@@ -64,7 +64,8 @@ setup() {
   },
 
   validar(){
-    if(!this.store.sesion){ 
+    if(this.store.user.id===-1){ 
+      alert("inicia sesion antes de proseguir perra")
       this.$router.push(`/#`);
     }
   }

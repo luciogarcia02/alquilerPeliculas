@@ -46,15 +46,16 @@ export default {
       this.$router.push(`/movies/${id}`);
   }, 
   validar(){
-    if(!this.store.sesion){ 
+    if(this.store.user.id===-1){ 
+      alert("inicia sesion antes de proseguir perra")
       this.$router.push(`/#`);
     }
   }
   },
   async mounted() {
     var peliculas = await this.store.user.peliculas
-    //this.validar()
-    console.log(this.store.sesion)
+    this.validar()
+    
    // this.movies = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies')
    // .then(response => response.json())
    // .then(response => response.data)

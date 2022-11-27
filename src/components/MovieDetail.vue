@@ -23,6 +23,13 @@ data(){
 }
 ,
 methods:{
+  validar(){
+    if(this.store.user.id===-1){ 
+      alert("inicia sesion antes de proseguir perra")
+      this.$router.push(`/#`);
+    }
+  }
+  ,
   async alquilar(){
   let a=await this.store.alquilarPelicula(this.id)
   if(a==null){
@@ -32,7 +39,9 @@ methods:{
    
 }
 
-  }
-
+  },
+   mounted() {
+    this.validar()
+   }
 };
 </script>
