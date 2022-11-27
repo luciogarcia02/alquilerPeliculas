@@ -4,8 +4,8 @@
       <div class="btn-group">
   <button type="button" class="btn btn-secondary" @click="ordenarPorScore()">Ordenar por score</button>
   <button type="button" class="btn btn-secondary" @click="ordenarPorNombre()">Ordenar por nombre</button>
-  <button type="button" class="btn btn-secondary" @click="filtrarPorGenero('Acción')">Accion</button>
-  <button type="button" class="btn btn-secondary" @click="filtrarPorGenero('Drama')">Drama</button>
+  <button type="button" class="btn btn-secondary" @click="filter('Acción')">Accion</button>
+  <button type="button" class="btn btn-secondary" @click="filter('Drama')">Drama</button>
 </div>
 <div
         v-for="(movie, index) in movies"
@@ -18,6 +18,7 @@
   </div>
   </div>
 </template>
+
 <script>
 
 export default {
@@ -28,7 +29,10 @@ export default {
     };
   },
   computed: {
-      
+      filter(gnro){
+        this.moviesAux = this.filtrarPorGenero(gnro)
+      return moviesAux
+      }
 },
   methods: {
     goTo(id) {
@@ -50,14 +54,15 @@ export default {
   return 0;
 });
   },
-  async filtrarPorGenero(gnro){
-    this.moviesAux = this.movies.filter(movie => movie.genre == gnro)
+ filtrarPorGenero(gnro){
+   return this.movies.filter(movie => movie.genre == gnro)
   },
   },
   async mounted() {
     var peliculas = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies')
     this.movies = await peliculas.json()
-    this.moviesAux = this.movies
+    this.moviesAux = movies
   },
 };
 </script>
+
