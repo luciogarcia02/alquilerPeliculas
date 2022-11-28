@@ -37,7 +37,7 @@ export default {
   ,
   data() {
     return {
-      movies: this.store.user.movies,
+      movies: '',
     };
   },
   methods: {
@@ -53,9 +53,9 @@ export default {
   }
   },
   async mounted() {
-    var peliculas = await this.store.user.peliculas
+    this.movies=await this.store.alquileres
     this.validar()
-    
+   console.log(this.movies)
    // this.movies = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies')
    // .then(response => response.json())
    // .then(response => response.data)

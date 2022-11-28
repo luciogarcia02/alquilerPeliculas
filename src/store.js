@@ -58,7 +58,7 @@ export const useNt2Store = defineStore("nt2", {
       let resultPelicula = await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/movies/" + id)
       let peli = await resultPelicula.json()
       if (!this.existeLaPeli(peli.id)) {
-        this.user.movies.push(peli)
+        this.alquileres.push(peli)
         await this.subirAlquileres(peli.id)
         return peli
       }
