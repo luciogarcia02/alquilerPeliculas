@@ -7,8 +7,8 @@
      Ordenar por:
    </button>
    <ul class="dropdown-menu dropdown-menu-dark">
-     <li><a  class="dropdown-item" @click="setFilter('score')">Ordenar por score</a></li>
-      <li><a type="button" class="dropdown-item" @click="setFilter('nombre')">Ordenar por nombre</a></li>
+     <li><a  class="dropdown-item" @click="setOrdenamiento('score')">Ordenar por score</a></li>
+      <li><a type="button" class="dropdown-item" @click="setOrdenamiento('nombre')">Ordenar por nombre</a></li>
       
    </ul>
   </div>
@@ -60,14 +60,15 @@ setup() {
     return {
       movies: [],
       moviesAux: [],
-      filter:''
+      filter:'',
+      ordenamiento:''
     };
   },
   computed: {
       filters(){
         let peliculasFiltradas=this.movies
-        if(this.filter==='score') peliculasFiltradas=this.movies.sort((a, b)=>{return b.score-a.score});
-        if(this.filter==='nombre') peliculasFiltradas=this.movies.sort(function (a, b) {
+        if(this.ordenamiento==='score') peliculasFiltradas=this.movies.sort((a, b)=>{return b.score-a.score});
+        if(this.ordenamiento==='nombre') peliculasFiltradas=this.movies.sort(function (a, b) {
   if (a.name > b.name) {
     return 1;
   }
@@ -87,8 +88,18 @@ setup() {
       }
 },
   methods: {
+   async bajarPelis(){
+    let peliculas = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies')
+    this.movies = await peliculas.json()
+    this.movies.forEach(async (a)=>a.score=await this.store.scoreame(a.id))
+  },
+
     setFilter(string){
       this.filter=string
+    }
+    ,
+    setOrdenamiento(string){
+      this.ordenamiento=string
     }
     ,
     goTo(id) {
@@ -103,8 +114,7 @@ setup() {
   ,
   },
   async mounted() {
-    var peliculas = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies')
-    this.movies = await peliculas.json()
+    this.bajarPelis()
     this.validar()
   },
 };

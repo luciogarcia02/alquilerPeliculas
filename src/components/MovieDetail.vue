@@ -48,40 +48,12 @@ setup() {
 }
 ,
 data(){
-  return { id:this.$route.params.id}
-}
-,
-methods:{
-  validar(){
-    if(this.store.user.id===-1){ 
-      alert("inicia sesion")
-      this.$router.push(`/#`);
-    }
-  }
-  ,
-  async alquilar(){
-  let a=await this.store.alquilarPelicula(this.id)
-  if(a==null){
-    alert("ya fue alquilada no se puede volver a Alquilar")
-  }
-  else{console.log(this.id) }
-   
-}
-
-  },
-   mounted() {
-    this.validar()
-   }
-  
-  ,
-  data(){
     return {
      
       id:this.$route.params.id,
       detalles: Object,
       genreName: ''
-    }
-  }
+    } }
   ,
   
   methods: {
@@ -110,9 +82,6 @@ methods:{
      const result = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/genres/'+id);
     const data = await result.json();
    return data.name
-
-
-
 return id
     }
   ,
@@ -122,11 +91,16 @@ return id
       let img = document.createElement("img");
       img.src = a;
       return img;
-    }
+    },
+    async bajarPelis(){
+    let peliculas = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies/'+this.id)
+    this.detalles = await peliculas.json()
+    this.detalles.score=this.store.scoreame(a.id)
+  }
     },
     async mounted() {
   this.validar()
-      var detallesPelicula = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies/'+this.id)
+      this.bajarPelis()
 this.detalles = await detallesPelicula.json();
 this.genreName = await this.getGenreName(this.detalles.genre)
     },
