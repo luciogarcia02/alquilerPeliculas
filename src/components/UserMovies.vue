@@ -43,7 +43,7 @@ export default {
   methods: {
     goTo(id) {
       console.log("lo llamo")
-      this.$router.push(`/movies/${id}`);
+      this.$router.push(`/User/${id}`);
   }, 
   validar(){
     if(this.store.user.id===-1){ 

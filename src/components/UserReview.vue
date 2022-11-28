@@ -26,8 +26,10 @@
   <h6> CALIFICACION DE LOS: {{this.detalles.score}}</h6>
       <h5>SINOPSIS</h5>
  <p>{{this.detalles.description}}</p>
+ <input type="text" v-model="comment">
  <input type="number" name="ranking" min="1" max="10" v-model="this.score">
- <button id="confirmar" @click="scores()">puntuar</button>
+
+ <button id="confirmar" @click="review()">puntuar</button>
     </div>
   </div>
 
@@ -51,7 +53,10 @@ setup() {
 data(){
   return { id:this.$route.params.id ,score:1,
       detalles: Object,
-      genreName: ''}
+      genreName: '',
+    userId:"",comment:'',
+  listaReview:[],
+length:0}
 }
 ,
 methods:{
@@ -62,15 +67,25 @@ methods:{
     }
   }
   ,
-  scores(){
-    alert("validame esta perra ")
+  async review(){
+    alert(this.comment+" "+this.score)
+    let Object={ 
+    method: 'POST',
+    body:JSON.stringify({movieId: this.id,
+    scoring: this.score,
+    review: this.comment,
+    userId: this.userId,
+    id: this.length})}
+
+
+  await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/reviews",Object) .then( response => response).then(response=>console.log(response))
+    
   },
   async getGenreName(id){
 
 const result = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/genres/'+id);
 const data = await result.json();
 return data.name
-return id
 
   }, 
   getImage () {
@@ -84,9 +99,15 @@ return id
  },
  async mounted() {
   this.validar()
-      var detallesPelicula = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies/'+this.id)
-this.detalles = await detallesPelicula.json();
-this.genreName = await this.getGenreName(this.detalles.genre)
+    var detallesPelicula = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies/'+this.id)
+    this.detalles = await detallesPelicula.json();
+    this.genreName = await this.getGenreName(this.detalles.genre)
+    this.userId=this.store.user.id
+    let listaReview=await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/reviews")
+    let array= await listaReview.json()
+    this.length=array.length+1
+    let pajaro=array.filter((a)=>a.movieid==this.id)
+    this.listaReview=pajaro
     },
 
 };
