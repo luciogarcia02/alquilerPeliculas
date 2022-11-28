@@ -10,8 +10,8 @@
                   <img class="rounded card-img-top" :src = "movie.url" alt="Card image cap">
                     <div class="card-body">
                     <h5 class="card-title">{{ movie.name }}</h5>
-                    
-                    <a class="btn btn-secondary" @click="goTo(movie.id)">CALIFICAR</a>
+                    <p class="card-text">desc?</p>
+                    <a class="btn btn-secondary" @click="goTo(movie.id)">Alquilar</a>
                     </div>
                    </div>
                 </div>
@@ -37,25 +37,25 @@ export default {
   ,
   data() {
     return {
-      movies: {},
+      movies: this.store.user.movies,
     };
   },
   methods: {
     goTo(id) {
       console.log("lo llamo")
-      this.$router.push(`/User/${id}`);
+      this.$router.push(`/user/${id}`);
   }, 
   validar(){
     if(this.store.user.id===-1){ 
-      alert("inicia sesion")
-      this.$router.push(`/login`);
+      alert("inicia sesion antes de proseguir perra")
+      this.$router.push(`/#`);
     }
   }
   },
   async mounted() {
-    this.movies=await this.store.user.movies
+    var peliculas = await this.store.user.peliculas
     this.validar()
-   console.log(this.movies)
+    
    // this.movies = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies')
    // .then(response => response.json())
    // .then(response => response.data)
