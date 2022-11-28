@@ -4,7 +4,7 @@
   <div class="container">
     <nav   class="navbar navbar-expand-lg ">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">Rent a Movie</a>
+    <a class="navbar-brand" href="/">Rent a Movie <img src="../favicon.ico" width="32" height="32" style="vertical-align:middle"></a>
     <button
           class="navbar-toggler"
           type="button"
