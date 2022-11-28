@@ -97,7 +97,7 @@ setup() {
   validar(){
     if(this.store.user.id===-1){ 
       alert("inicia sesion antes de proseguir")
-      this.$router.push(`/#`);
+      this.$router.push(`/login`);
     }
   }
   ,

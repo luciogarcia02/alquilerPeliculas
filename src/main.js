@@ -9,7 +9,7 @@ import MoviesRanking from "./components/MoviesRanking.vue";
 import User from "./components/User.vue";
 import UserMovies from "./components/UserMovies.vue";
 import Login from "./components/Login.vue";
-
+import UserReview from "./components/UserReview.vue";
 
 import { PiniaVuePlugin, createPinia } from "pinia";
 Vue.use(PiniaVuePlugin);
@@ -42,7 +42,8 @@ const routes = [
     path: "/user",
     component: User,
     children: [
-      { path: "", component: UserMovies }, 
+      { path: "", component: UserMovies },
+      {path: ":id/", component: UserReview } 
     ],
   },
   {
