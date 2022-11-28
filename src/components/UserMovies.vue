@@ -48,7 +48,7 @@ export default {
   validar(){
     if(this.store.user.id===-1){ 
       alert("inicia sesion")
-      this.$router.push(`/#`);
+      this.$router.push(`/login`);
     }
   }
   },
