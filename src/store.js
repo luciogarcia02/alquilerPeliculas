@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 
 export const useNt2Store = defineStore("nt2", {
-  state: () => ({ user: { id: -1, name: "", password: "", movies: [] }, contador: 3, appName: "" ,alquileres:[]}),
+  state: () => ({ user: { id: -1, name: "", password: "", movies: [] }, contador: 3, appName: "" }),
   getters: {
     total: (state) => state.contador + 10,
     name: (state) => state.appName,
@@ -32,14 +32,15 @@ export const useNt2Store = defineStore("nt2", {
     async bajarAlquileres(id) {
       this.user.movies = []
       let carcajada =await fetch("https://6383e16a3fa7acb14fe98c28.mockapi.io/alquileres")
-      this.alquileres=await carcajada.json()
-      let filtrado =this.alquileres.filter((a)=>a.userId===id)
+      let lista=await carcajada.json()
+      let filtrado =lista.filter((a)=>a.userId===id)
       filtrado.forEach(async element => {
   await this.alquilarPelicula(element.movieId) 
  });      
       
       
     }
+
 ,
     async devolverUser(name, pass) {
       const resultUsers = await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/users");
@@ -58,7 +59,7 @@ export const useNt2Store = defineStore("nt2", {
       let resultPelicula = await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/movies/" + id)
       let peli = await resultPelicula.json()
       if (!this.existeLaPeli(peli.id)) {
-        this.alquileres.push(peli)
+        this.user.movies.push(peli)
         await this.subirAlquileres(peli.id)
         return peli
       }
@@ -68,7 +69,7 @@ export const useNt2Store = defineStore("nt2", {
 
     },
     existeLaPeli(id) {
-      return this.user.movies.some(a => a.id == id) ||this.alquileres.some(a => a.movieId == id)
+      return this.user.movies.some(a => a.id == id)
     }
     ,
     async subirAlquileres(peli) {

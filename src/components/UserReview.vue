@@ -63,7 +63,7 @@ async validarreview(){
 
   let b=this.listaReview.find((a)=>{return a.movieId===this.id && a.userId===this.userId})
   
-  if(b==undefined){
+  if(b===undefined){
     this.review()
   }
   else{
