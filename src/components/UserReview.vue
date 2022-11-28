@@ -4,13 +4,9 @@
       <div class="row">
         <div class="col-sm">
           <router-link to="/movies"><button type="button" class="btn btn-dark">Volver</button></router-link>
-
         </div>
       </div>
    
-
-   
-  
   <div class="row">
     <div class="col-sm-5">
 <img class="movieImage" :src="detalles.url">
@@ -38,8 +34,9 @@
     
   </template>
 
-<script>
 
+
+<script>
 
 import { useNt2Store } from "../store";
 
@@ -92,11 +89,7 @@ async validarreview(){
   ,
   async review(){
     alert(this.comment+" "+this.score)
-    
-  
-
-
-    const Object = {
+   const Object = {
             method: "POST",
             headers: {
               "Content-type": "application/json; charset=UTF-8"
@@ -106,10 +99,6 @@ async validarreview(){
     userId: this.userId,
     id: this.length,
     scoring:parseInt(this.score)})}
-  
-  
-  
-  
     await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/reviews",Object) .then( response => response).then(response=>console.log(response))
               this.actualizar()
   },
@@ -120,8 +109,8 @@ const data = await result.json();
 return data.name
 
   }, 
+
   getImage () {
-   
    var a = this.detalles.url;
    let img = document.createElement("img");
    img.src = a;
@@ -133,22 +122,16 @@ return data.name
   this.validar()
     var detallesPelicula = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies/'+this.idPeli)
     this.detalles = await detallesPelicula.json();
-    
     this.genreName = await this.getGenreName(this.detalles.genre)
     this.userId=this.store.user.id
     this.actualizar()
-    //this.length=this.listaReview.length
-   
-    
     },
 
 };
-
 </script>
 <style scoped>
 .movieImage{
   width: 350px;
   height: 500px;
 }
-
 </style>
