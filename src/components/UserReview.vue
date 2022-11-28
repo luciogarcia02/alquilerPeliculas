@@ -4,9 +4,13 @@
       <div class="row">
         <div class="col-sm">
           <router-link to="/movies"><button type="button" class="btn btn-dark">Volver</button></router-link>
+
         </div>
       </div>
    
+
+   
+  
   <div class="row">
     <div class="col-sm-5">
 <img class="movieImage" :src="detalles.url">
@@ -22,8 +26,8 @@
   <h6> CALIFICACION DEl promedio {{this.scoreProm}}</h6>
       <h5>SINOPSIS</h5>
  <p>{{this.detalles.description}}</p>
- <input type="text" v-model="comment" placeholder="Deja tu comentario">
- <input type="number" name="ranking" min="1" max="10" v-model="score" placeholder="Deja tu puntuación">
+ <input type="text" v-model="comment">
+ <input type="number" name="ranking" min="1" max="10" v-model="score">
 
  <button id="confirmar" @click="validarreview()">puntuar</button>
     </div>
@@ -34,9 +38,8 @@
     
   </template>
 
-
-
 <script>
+
 
 import { useNt2Store } from "../store";
 
@@ -61,7 +64,7 @@ scoreProm:0
 methods:{
 async validarreview(){
 
-  let b=this.listaReview.find((a)=>{return a.movieId===this.id && a.userId===this.userId})
+  let b=this.listaReview.find((a)=>{return a.movieId==this.idPeli && a.userId==this.userId})
   
   if(b===undefined){
     this.review()
@@ -70,8 +73,10 @@ async validarreview(){
     alert("solo un comentario por usuario")
   }
 }
+
+
   ,
-  async actualizar(){
+ async actualizar(){
   let listaReview=await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/reviews")
   let arra= await listaReview.json()
   this.listaReview=arra
@@ -82,23 +87,31 @@ async validarreview(){
   ,
   validar(){
     if(this.store.user.id===-1){ 
-      alert("inicia sesion antes de proseguir")
-      this.$router.push(`/login`);
+      alert("inicia sesion antes de proseguir perra")
+      this.$router.push(`/#`);
     }
   }
   ,
   async review(){
     alert(this.comment+" "+this.score)
-   const Object = {
+    
+  
+
+
+    const Object = {
             method: "POST",
             headers: {
               "Content-type": "application/json; charset=UTF-8"
             },
-            body:JSON.stringify({movieId: parseInt(this.idPeli),
+            body:JSON.stringify({movieId: this.idPeli,
     review: this.comment,
-    userId: parseInt(this.userId),
+    userId: this.userId,
     id: this.length,
     scoring:parseInt(this.score)})}
+  
+  
+  
+  
     await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/reviews",Object) .then( response => response).then(response=>console.log(response))
               this.actualizar()
   },
@@ -109,8 +122,8 @@ const data = await result.json();
 return data.name
 
   }, 
-
   getImage () {
+   
    var a = this.detalles.url;
    let img = document.createElement("img");
    img.src = a;
@@ -122,16 +135,22 @@ return data.name
   this.validar()
     var detallesPelicula = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies/'+this.idPeli)
     this.detalles = await detallesPelicula.json();
+    
     this.genreName = await this.getGenreName(this.detalles.genre)
     this.userId=this.store.user.id
     this.actualizar()
+    //this.length=this.listaReview.length
+   
+    
     },
 
 };
+
 </script>
 <style scoped>
 .movieImage{
   width: 350px;
   height: 500px;
 }
+
 </style>
