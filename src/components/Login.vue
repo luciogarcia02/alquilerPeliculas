@@ -48,11 +48,19 @@ data(){return {user:this.store.user.name,username:"",password:""}}
 ,
 methods: {
   async login(){
-    console.log(this.username,this.password)
+ 
   let a=await this.store.devolverUser(this.username,this.password)
+  console.log(a)
   this.user=a.name
-alert('Bienvenido! Usuario: ' + this.username)
-  this.$router.push(`/movies/`);
+  if(a.id != -1){
+
+    alert('Bienvenido! Usuario: ' + this.username)
+    this.$router.push(`/movies/`);
+  }
+else{
+  alert('No existe el usuario')
+}
+
   
 }
 

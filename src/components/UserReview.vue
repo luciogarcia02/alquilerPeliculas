@@ -22,8 +22,8 @@
   <h6> CALIFICACION DEl promedio {{this.scoreProm}}</h6>
       <h5>SINOPSIS</h5>
  <p>{{this.detalles.description}}</p>
- <input type="text" v-model="comment">
- <input type="number" name="ranking" min="1" max="10" v-model="score">
+ <input type="text" v-model="comment" placeholder="Deja tu comentario">
+ <input type="number" name="ranking" min="1" max="10" v-model="score" placeholder="Deja tu puntuación">
 
  <button id="confirmar" @click="validarreview()">puntuar</button>
     </div>
@@ -76,14 +76,14 @@ async validarreview(){
   let arra= await listaReview.json()
   this.listaReview=arra
   this.scoreProm=await this.store.scoreame(this.idPeli)
-  alert(this.scoreProm)
+ 
 }
 
   ,
   validar(){
     if(this.store.user.id===-1){ 
-      alert("inicia sesion antes de proseguir perra")
-      this.$router.push(`/#`);
+      alert("inicia sesion antes de proseguir")
+      this.$router.push(`/login`);
     }
   }
   ,

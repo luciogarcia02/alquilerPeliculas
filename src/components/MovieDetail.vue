@@ -23,7 +23,7 @@
   <h6> DURACIÓN: {{this.detalles.duration}}</h6>
   <h6> CLASIFICACIÓN: {{this.detalles.classification}}</h6>
   <h6> DIRECTOR: {{this.detalles.director}}</h6>
-  <h6> CALIFICACION DE LOS: {{this.detalles.score}}</h6>
+  <h6> CALIFICACION PROMEDIO: {{this.scoreProm}}</h6>
       <h5>SINOPSIS</h5>
  <p>{{this.detalles.description}}</p>
  <button type="button" class="btn btn-secondary" @click="alquilar()">Alquilar</button>
@@ -52,7 +52,8 @@ data(){
      
       id:this.$route.params.id,
       detalles: Object,
-      genreName: ''
+      genreName: '',
+      scoreProm:0
     } }
   ,
   
@@ -99,6 +100,7 @@ return id
   }
     },
     async mounted() {
+      this.scoreProm=await this.store.scoreame(this.id)
   this.validar()
       this.bajarPelis()
 this.detalles = await detallesPelicula.json();
