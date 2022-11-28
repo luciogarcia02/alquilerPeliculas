@@ -71,12 +71,12 @@ async validarreview(){
   }
 }
   ,
- async actualizar(){
+  async actualizar(){
   let listaReview=await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/reviews")
   let arra= await listaReview.json()
   this.listaReview=arra
   this.scoreProm=await this.store.scoreame(this.idPeli)
- 
+  alert(this.scoreProm)
 }
 
   ,
@@ -94,9 +94,9 @@ async validarreview(){
             headers: {
               "Content-type": "application/json; charset=UTF-8"
             },
-            body:JSON.stringify({movieId: this.idPeli,
+            body:JSON.stringify({movieId: parseInt(this.idPeli),
     review: this.comment,
-    userId: this.userId,
+    userId: parseInt(this.userId),
     id: this.length,
     scoring:parseInt(this.score)})}
     await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/reviews",Object) .then( response => response).then(response=>console.log(response))
