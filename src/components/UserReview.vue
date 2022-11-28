@@ -23,13 +23,13 @@
   <h6> DURACIÓN: {{this.detalles.duration}}</h6>
   <h6> CLASIFICACIÓN: {{this.detalles.classification}}</h6>
   <h6> DIRECTOR: {{this.detalles.director}}</h6>
-  <h6> CALIFICACION DE LOS: {{this.detalles.score}}</h6>
+  <h6> CALIFICACION DEl promedio {{this.scoreProm}}</h6>
       <h5>SINOPSIS</h5>
  <p>{{this.detalles.description}}</p>
  <input type="text" v-model="comment">
- <input type="number" name="ranking" min="1" max="10" v-model="this.score">
+ <input type="number" name="ranking" min="1" max="10" v-model="score">
 
- <button id="confirmar" @click="review()">puntuar</button>
+ <button id="confirmar" @click="validarreview()">puntuar</button>
     </div>
   </div>
 
@@ -51,15 +51,40 @@ setup() {
 }
 ,
 data(){
-  return { id:this.$route.params.id ,score:1,
+  return { idPeli:this.$route.params.id ,score:1,
       detalles: Object,
       genreName: '',
     userId:"",comment:'',
   listaReview:[],
-length:0}
+length:0,
+scoreProm:0
+}
 }
 ,
 methods:{
+async validarreview(){
+
+  let b=this.listaReview.find((a)=>{return a.movieId===this.id && a.userId===this.userId})
+  
+  if(b==undefined){
+    this.review()
+  }
+  else{
+    alert("solo un comentario por usuario")
+  }
+}
+
+
+  ,
+ async actualizar(){
+  let listaReview=await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/reviews")
+  let arra= await listaReview.json()
+  this.listaReview=arra
+  this.scoreProm=await this.store.scoreame(this.idPeli)
+  alert(this.scoreProm)
+}
+
+  ,
   validar(){
     if(this.store.user.id===-1){ 
       alert("inicia sesion antes de proseguir perra")
@@ -69,17 +94,26 @@ methods:{
   ,
   async review(){
     alert(this.comment+" "+this.score)
-    let Object={ 
-    method: 'POST',
-    body:JSON.stringify({movieId: this.id,
-    scoring: this.score,
+    
+  
+
+
+    const Object = {
+            method: "POST",
+            headers: {
+              "Content-type": "application/json; charset=UTF-8"
+            },
+            body:JSON.stringify({movieId: this.idPeli,
     review: this.comment,
     userId: this.userId,
-    id: this.length})}
-
-
-  await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/reviews",Object) .then( response => response).then(response=>console.log(response))
-    
+    id: this.length,
+    scoring:parseInt(this.score)})}
+  
+  
+  
+  
+    await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/reviews",Object) .then( response => response).then(response=>console.log(response))
+              this.actualizar()
   },
   async getGenreName(id){
 
@@ -99,15 +133,15 @@ return data.name
  },
  async mounted() {
   this.validar()
-    var detallesPelicula = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies/'+this.id)
+    var detallesPelicula = await fetch('https://63593c84ff3d7bddb99cca8f.mockapi.io/movies/'+this.idPeli)
     this.detalles = await detallesPelicula.json();
+    
     this.genreName = await this.getGenreName(this.detalles.genre)
     this.userId=this.store.user.id
-    let listaReview=await fetch("https://63593c84ff3d7bddb99cca8f.mockapi.io/reviews")
-    let array= await listaReview.json()
-    this.length=array.length+1
-    let pajaro=array.filter((a)=>a.movieid==this.id)
-    this.listaReview=pajaro
+    this.actualizar()
+    //this.length=this.listaReview.length
+   
+    
     },
 
 };
